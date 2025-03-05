@@ -46,8 +46,8 @@ class Department{
 
         $this->db->bind(':d_name', $data['name']);
         $this->db->bind(':d_description', $data['description']);
-        $this->db->bind('d_zone', $data['zone']);
-        $this->db->bind('d_head', $data['head_of_dept']);
+        $this->db->bind('d_zone', $data['zone_code']);
+        $this->db->bind('d_head', $data['department_head']);
 
         return $this->db->execute();
     }
@@ -62,8 +62,8 @@ class Department{
 
         $this->db->bind(':d_name', $data['name']);
         $this->db->bind(':d_description', $data['description']);
-        $this->db->bind('d_zone', $data['zone']);
-        $this->db->bind('d_head', $data['head_of_dept']);
+        $this->db->bind('d_zone', $data['zone_code']);
+        $this->db->bind('d_head', $data['department_head']);
 
         return $this->db->execute();
 

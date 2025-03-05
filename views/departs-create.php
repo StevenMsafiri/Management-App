@@ -26,11 +26,17 @@
     $zones = $zonesController->getAllzones();
     $employees = $employeesController->read();
 
+    echo $_SERVER['REQUEST_METHOD'];
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $result = $departsController->processForm($data);
+        echo "here";
+        $result = $departsController->processForm($_POST);
+
+        var_dump($result);
+
         if ($result) {
-            header("Location: departs.php");
+            redirect("../views/departs.php");
             exit();
         } else {
             flash("create", "Internal Error");
@@ -43,9 +49,12 @@
 
 
     <div class="container-reg">
-        <a href="./read_staff.php" class="go-back">X</a>
-        <form method="POST">
-            <div class="title">Create New Departmet</div>
+        <a href="./departs-read.php" class="go-back">X</a>
+        <form action="" method="post">
+        <div class="title">Create New Departmet</div>
+        <?php 
+         flash("create");
+        ?>
             <div class="form-info">
                 <div class="input-box">
                     <label for="name:"> Department name:</label>
@@ -92,12 +101,12 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="reset">Clear</button>
                     <button type="submit" id="create-btn">Create</button>
+                    <button type="reset">Clear</button>
+                   
                 </div>
 
             </div>
-
 
         </form>
     </div>

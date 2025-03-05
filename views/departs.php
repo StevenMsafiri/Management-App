@@ -13,6 +13,9 @@
 
     <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+    
     include "./partials/nav.php";
 
     include "../controllers/Departments.php";
@@ -26,8 +29,13 @@
     $departments = $departsController->getAllDepartments();
 
 
+    if(isset($_GET['id'])){
 
+        $id = $_GET['id'];
 
+        $departsController->deleteDepartment($id);
+
+    }
 
     ?>
 
@@ -70,7 +78,7 @@
                         </td>
                         <td> $row[head_of_dept]</td>
                         <td> <a href='./departs-edit.php?id=$row[dept_id]' class='update-btn'>Edit</a>
-                             <a href='./delete.php?id=$row[dept_id]' class='clear-btn'>Delete</a>
+                             <a href='./departs.php?id=$row[dept_id]' class='clear-btn'>Delete</a>
                         </td>
                         </tr>
                         ";
