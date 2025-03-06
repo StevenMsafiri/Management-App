@@ -25,6 +25,7 @@
 
     $zones = $zonesController->getAllzones();
     $employees = $employeesController->read();
+    var_dump($_GET);
     $id = $_GET['id'];
     $department = $departsController->getOneDepartment($id);
 
@@ -62,19 +63,9 @@
                         <?php
                         if (!empty($employees)) {
                             echo '<select name="Supervisor" id="pos">';
-                            
-                            foreach ($employees as $employee) { 
-                                if($employee['employee_id'] == $department['head_of_dept']){
-                                    
-                                    echo htmlspecialchars($employee['f_name']) . " " . htmlspecialchars($employee['l_name']).'" selected" </option>';
-                                    break;
-                                }else{
-                                    
-
-                                }
-                                echo '<option value="' . htmlspecialchars($employee['employee_id']) . '">'
-                                .htmlspecialchars($employee['f_name']) . " " . htmlspecialchars($employee['l_name']) .'</option>';
-                                
+                            echo '<option selected> Select Head of Department </option>';
+                            foreach ($employees as $employee) {
+                                echo '<option value="' . htmlspecialchars($employee['employee_id']) . '">' . htmlspecialchars($employee['l_name']) . '</option>';
                             }
                             echo '</select>';
                         } else {

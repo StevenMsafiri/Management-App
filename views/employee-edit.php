@@ -112,18 +112,17 @@
             <div class="two">
                 <div class="input-box">
                     <label for="Zone">Zone:</label>
+                    <select name="Zone" id="zone" required>
+                    <option> Select Zone </option>
                     <?php
                     if (!empty($zones)) {
-                        echo '<select name="Zone" id="zone">';
-                        echo '<option value="> Select a zone </option>';
+
                         foreach ($zones as $zone) {
                             echo '<option value="' . htmlspecialchars($zone['zone_code']) . '"';
-                            if ($zone['zone_code'] == $getzone) echo ' selected';
+                            if ($zone['zone_code'] == $data['zone_code']) echo ' selected';
                             echo '>' . htmlspecialchars($zone['zone_name']) . '</option>';
                         }
                         echo '</select>';
-                    } else {
-                        echo '<input type="text" name="Zone" placeholder="Zone" required>';
                     }
                     ?>
                 </div>
@@ -135,7 +134,7 @@
                             <?php
                             foreach ($departments as $department) {
                                 if ($data['department_id'] === $department['dept_id']) {
-                                    echo $department['department_name'];
+                                    echo '<option selected value ="' .$department['id'].'">'.$department['department_name']. '</option>';
                                 }
                             }
 
@@ -151,7 +150,7 @@
                             <?php
                             foreach ($sections as $section) {
                                 if ($data['section_id'] === $section['sect_id']) {
-                                    echo $section['section_name'];
+                                    echo '<option selected value ="' .$section['section_id'].'">'.$section['section_name']. '</option>';
                                 }
                             }
 
@@ -188,9 +187,9 @@
                     <?php
                     if (!empty($employees)) {
                         echo '<select name="Supervisor" id="pos">';
-                        echo '<option selected>Select reporting to</option>';
+                        echo '<option>Select reporting to</option>';
                         foreach ($employees as $employeeOption) {
-                            echo '<option value="' . htmlspecialchars($employeeOption['reporting_to']) . '"';
+                            echo '<option value="' . htmlspecialchars($employeeOption['employee_id']) . '"';
                             if ($employeeOption['employee_id'] === $data['reporting_to']) echo ' selected';
                             echo '>' . htmlspecialchars($employeeOption['f_name'] . " " . $employeeOption['l_name']) . '</option>';
                         }

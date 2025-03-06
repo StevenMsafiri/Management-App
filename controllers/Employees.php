@@ -32,10 +32,6 @@ class Employees
 
     public function edit($id, $data)
     {
-        if (!preg_match("/^[a-zA-Z0-9]*$/", $data['f_name']) || $data['s_name'] || $data['l_name']) {
-            flash("update", "Invalid name(s)");
-        }
-
 
         if (
             empty($data['f_name']) || empty($data['l_name']) || $data['s_name'] || $data['qualification'] || $data['birth_date']

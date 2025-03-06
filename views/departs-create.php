@@ -26,9 +26,6 @@
     $zones = $zonesController->getAllzones();
     $employees = $employeesController->read();
 
-    echo $_SERVER['REQUEST_METHOD'];
-
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "here";
         $result = $departsController->processForm($_POST);
