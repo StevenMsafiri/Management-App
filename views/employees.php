@@ -1,10 +1,18 @@
 <?php
 
+include '../helpers/functions.php';
 require_once '../controllers/Employees.php';
+require_once '../controllers/Zones.php';
+require_once '../controllers/Departments.php';
 
 $employeesController = new Employees();
+$departsController = new Departments;
+$zonesController = new Zones;
 
 $data = $employeesController->read();
+$zones = $zonesController->getAllzones();
+$departments =$departsController->getAllDepartments();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +34,10 @@ $data = $employeesController->read();
 
     <body>
         <div class="container-staff">
+            <div class="one">
             <h2>List of Employees</h2>
-            <a href="./employee-create.php" class="create-btn">Add Employee</a>
+            <a href="./employee-create.php" id ="create-btn">Add Employee</a>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
@@ -43,7 +53,7 @@ $data = $employeesController->read();
                         <th>Position</th>
                         <th>Reporting to</th>
                         <th>Date of Employment</th>
-                        <th>Modify</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,14 +68,37 @@ $data = $employeesController->read();
                             <td> $row[l_name]</td>
                             <td> $row[birth_date]</td>
                             <td> $row[qualification]</td>
-                            <td> $row[zone_code]</td>
-                            <td> $row[department_id]</td>
+                            <td>";
+
+                            foreach($zones as $zone){
+                                if($row['zone_code'] === $zone['zone_code']){
+                                    echo $zone['zone_name'];
+                                    break;
+                                }
+                            }
+                            
+                            echo "</td>
+                            <td>";
+                            foreach($departments as $department){
+                                if($row['department_id'] === $department['dept_id']){
+                                    echo $department['department_name'];
+                                    break;
+                                }
+                            }
+                            echo "</td>
                             <td> $row[section_id]</td>
                             <td> $row[position]</td>
                             <td> $row[reporting_to]</td>
                             <td> $row[employed_date]</td>
-                            <td> <a href='./employee-edit.php?id=$row[employee_id]' class='update-btn'>Edit</a>
-                                 <a href='../helpers/delete.php?id=$row[employee_id]' class='clear-btn'>Delete</a>
+                            <td>
+                            <div class='actions'>
+                            <a href='./employee-edit.php?id=$row[employee_id]' class='update-btn'>
+                            <img src='./icons/icons8-update-64.png'>
+                            </a>
+                                 <a href='../helpers/delete.php?id=$row[employee_id]' class='clear-btn'>
+                                 <img src='./icons/icons8-delete-48.png'>
+                                 </a>
+                            </div> 
                             </td>
                             </tr>
                             </tbody>";
@@ -73,9 +106,7 @@ $data = $employeesController->read();
                     } else {
                         echo "<tr><td colspan='13'>No employees found</td></tr>";
                     }
-
                     ?>
-
             </table>
         </div>
 

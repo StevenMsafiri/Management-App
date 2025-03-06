@@ -41,8 +41,10 @@ ini_set('display_errors', 1);
 
 
     <div class="container-staff">
+        <div class="one">
         <h2>Departments</h2>
-        <a href="./departs-create.php" class="create-btn">Add Department</a>
+        <a href="./departs-create.php" id ="create-btn">Add Department</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -77,8 +79,8 @@ ini_set('display_errors', 1);
                         echo "
                         </td>
                         <td> $row[head_of_dept]</td>
-                        <td> <a href='./departs-edit.php?id=$row[dept_id]' class='update-btn'>Edit</a>
-                             <a href='./departs.php?id=$row[dept_id]' class='clear-btn'>Delete</a>
+                        <td class= 'actions'> <a href='./departs-edit.php?id=$row[dept_id]' class='update-btn'><img src='./icons/icons8-update-64.png'></a>
+                             <a href='./departs.php?id=$row[dept_id]' class='clear-btn'><img src='./icons/icons8-delete-48.png'></a>
                         </td>
                         </tr>
                         ";
