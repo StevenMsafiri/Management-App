@@ -9,7 +9,7 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="./departs.php">Departments</a>
-                    <a href="./sections/read_sections.php">Sections</a>
+                    <a href="./sections.php">Sections</a>
                     <a href="./employees.php">Employees</a>
                 </div>
             </div>

@@ -42,7 +42,7 @@ class Section
     public function createNew($data)
     {
 
-        $sql = "INSERT INTO Sections(department_name, description, zone) VALUES(:d_name, :d_description, :d_zone)";
+        $sql = "INSERT INTO Sections(section_name, description, department_id, section_head) VALUES(:d_name, :d_description, :d_id, :supervisor)";
 
         $this->db->query($sql);
 
@@ -58,13 +58,14 @@ class Section
     public function updateById($id, $data)
     {
 
-        $sql = "UPDATE Departments SET department_name = :d_name, description = :d_description, zone = :d_zone";
+        $sql = "UPDATE Departments SET section_name = :d_name, description = :d_description, department_id = :d_id, section_head = :supervisor";
 
         $this->db->query($sql);
 
         $this->db->bind(':d_name', $data['name']);
         $this->db->bind(':d_description', $data['description']);
-        $this->db->bind('d_zone', $data['zone']);
+        $this->db->bind('d_zone', $data['department_id']);
+        $this->db->bind('supervisor', $data['section_head']);
 
         return $this->db->execute();
     }
@@ -72,7 +73,7 @@ class Section
     public function deleteById($id)
     {
 
-        $query = "DELETE FROM Departments WHERE id = :id";
+        $query = "DELETE FROM Sections WHERE sect_id = :id";
         $this->db->query($query);
 
         $this->db->bind(':id', $id);

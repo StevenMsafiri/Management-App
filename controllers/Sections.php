@@ -53,26 +53,4 @@ class Sections
 
         return $this->sectionModel->updateById($id, $data);
     }
-
-    public function processForm($postData, $isUpdate = false)
-    {
-        $data = [
-            'dept_id' => isset($postData['id']) ? trim($postData['id']) : null, // Ensure 'id' exists
-            'name' => trim($postData['name']),
-            'description' => trim($postData['description']),
-            'section_head' => trim($postData['supervisor']),
-            'department' => trim($postData['depart'])
-        ];
-
-        if (empty($data['name']) || empty($data['supervisor'])) {
-
-            return false;
-        }
-
-        if ($isUpdate) {
-            return $this->editSection($data['dept_id'], $data);
-        } else {
-            return $this->createSection($data);
-        }
-    }
 }
