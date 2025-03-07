@@ -41,18 +41,18 @@ class Employeee
 
         $this->db->query($query);
 
-        $this->db->bind(':id', $id);
-        $this->db->bind(':first_name', $data['f_name']);
-        $this->db->bind(':second_name', $data['s_name']);
-        $this->db->bind(':last_name', $data['l_name']);
-        $this->db->bind(':birthdate', $data['birth_date']);
-        $this->db->bind(':qualification', $data['qualification']);
-        $this->db->bind(':zonecode', $data['zone_code']);
-        $this->db->bind(':department', $data['department_id']);
-        $this->db->bind(':section', $data['section_id']);
-        $this->db->bind(':position', $data['position']);
-        $this->db->bind(':supervisor', $data['reporting_to']);
-        $this->db->bind(':date_of_employment', $data['date_of_employment']);
+        $this->db->bind(':id', intval($id));
+        $this->db->bind(':first_name', $data['Firstname']);
+        $this->db->bind(':second_name', $data['Second-name']);
+        $this->db->bind(':last_name', $data['Lastname']);
+        $this->db->bind(':qualification', $data['Qualification']);
+        $this->db->bind(':birthdate', $data['Birthdate']);
+        $this->db->bind(':zonecode', $data['Zone']);
+        $this->db->bind(':department', intval($data['Department']));
+        $this->db->bind(':section', intval($data['Section']));
+        $this->db->bind(':position', $data['Position']);
+        $this->db->bind(':employed_date', $data['Employed-date']);
+        $this->db->bind(':supervisor', intval($data['Supervisor']));
 
         return $this->db->execute();
     }
@@ -79,17 +79,17 @@ class Employeee
 
         $this->db->query($query);
 
-        $this->db->bind(':first_name', $data['f_name']);
-        $this->db->bind(':second_name', $data['s_name']);
-        $this->db->bind(':last_name', $data['l_name']);
-        $this->db->bind(':qualification', $data['qualification']);
-        $this->db->bind(':birthdate', $data['birth_date']);
-        $this->db->bind(':zonecode', $data['zone_code']);
-        $this->db->bind(':department', $data['department_id']);
-        $this->db->bind(':section', $data['section_id']);
-        $this->db->bind(':position', $data['position']);
-        $this->db->bind(':employed_date', $data['date_of_employment']);
-        $this->db->bind(':supervisor', $data['reporting_to']);
+        $this->db->bind(':first_name', $data['Firstname']);
+        $this->db->bind(':second_name', $data['Second-name']);
+        $this->db->bind(':last_name', $data['Lastname']);
+        $this->db->bind(':qualification', $data['Qualification']);
+        $this->db->bind(':birthdate', $data['Birthdate']);
+        $this->db->bind(':zonecode', $data['Zone']);
+        $this->db->bind(':department', intval($data['Department']));
+        $this->db->bind(':section', intval($data['Section']));
+        $this->db->bind(':position', $data['Position']);
+        $this->db->bind(':employed_date', $data['Employed-date']);
+        $this->db->bind(':supervisor', intval($data['Supervisor']));
 
         return $this->db->execute();
     }

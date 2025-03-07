@@ -20,13 +20,9 @@
     $data = $employeesController->readOne($_GET['id']);
 
     include_once '../controllers/Employees.php';
-
     include_once '../controllers/Positions.php';
-
     include_once '../controllers/Zones.php';
-
     include_once '../controllers/Departments.php';
-
     include_once '../controllers/Sections.php';
 
 
@@ -37,30 +33,17 @@
     $departmentsController = new Departments();
     $sectionsController = new Sections();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['is_update']) && $_POST['is_update'] == 1) {
-            $result = $employeesController->processForm($_POST, true);
-        }
-        if ($result) {
-            header("Location: employees.php");
-            exit();
-        } else {
-            flash("update", "Internal Error");
-        }
-    } else {
-        $employees = $employeesController->read();
-        $positions = $positionsController->getAllPositions();
-        $zones = $zonesController->getAllzones();
-        $departments = $departmentsController->getAllDepartments();
-        $sections = $sectionsController->getAllSections();
-    }
-
+    $employees = $employeesController->read();
+    $positions = $positionsController->getAllPositions();
+    $zones = $zonesController->getAllzones();
+    $departments = $departmentsController->getAllDepartments();
+    $sections = $sectionsController->getAllSections();
     ?>
 
 
     <div class="container-reg">
         <a href="./employees.php" class="go-back">X</a>
-        <form method="POST">
+        <form method="POST" action="../controllers/Employees.php">
             <div class="title">Update employee
                 <br>
                 <?php flash("update") ?>

@@ -92,10 +92,10 @@ $departments =$departsController->getAllDepartments();
                             <td> $row[employed_date]</td>
                             <td>
                             <div class='actions'>
-                            <a href='./employee-edit.php?id=$row[employee_id]' class='update-btn'>
+                            <a name='update-btn' href='./employee-edit.php?id=$row[employee_id]' class='update-btn'>
                             <img src='./icons/icons8-update-64.png'>
                             </a>
-                                 <a href='../helpers/delete.php?id=$row[employee_id]' class='clear-btn'>
+                                 <a  name='delete' href='../controllers/Employees.php?employee_id=$row[employee_id]' class='clear-btn'>
                                  <img src='./icons/icons8-delete-48.png'>
                                  </a>
                             </div> 

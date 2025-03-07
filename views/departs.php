@@ -80,7 +80,8 @@ ini_set('display_errors', 1);
                         </td>
                         <td> $row[head_of_dept]</td>
                         <td class= 'actions'> <a href='./departs-edit.php?id=$row[dept_id]' class='update-btn'><img src='./icons/icons8-update-64.png'></a>
-                             <a href='./departs.php?id=$row[dept_id]' class='clear-btn'><img src='./icons/icons8-delete-48.png'></a>
+
+                             <a href='../controllers/Departments.php?dept_id=$row[dept_id]' class='clear-btn'><img src='./icons/icons8-delete-48.png'></a>
                         </td>
                         </tr>
                         ";

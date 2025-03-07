@@ -12,7 +12,6 @@
 <body>
 
     <?php
-
     include "./partials/nav.php";
     include "../controllers/Employees.php";
     include "../controllers/Zones.php";
@@ -22,19 +21,21 @@
     $zonesController = new Zones();
     $departsController = new Departments();
 
-
     $zones = $zonesController->getAllzones();
     $employees = $employeesController->read();
     $id = $_GET['id'];
     $department = $departsController->getOneDepartment($id);
-
     ?>
 
     <div class="container-reg">
         <a href="./departs.php" class="go-back">X</a>
-        <form method="POST">
+        <form method = "POST" action="../controllers/Departments.php">
             <div class="title">Update departmet</div>
+            <br>
+            <?php flash("update") ?>
             <div class="form-info">
+            <input type="hidden" name="is_update" value="1">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($department['dept_id'])?>">
                 <div class="input-box">
                     <label for="name:"> Department name:</label>
                     <input type="text" name="name" value="<?php echo htmlspecialchars($department['department_name'])?>">
@@ -89,7 +90,7 @@
                 </div>
 
                 <div class="form-actions">
-                <button type="submit" id="create-btn">Update</button>
+                    <button type="submit" id="create-btn">Update</button>
                     <button type="reset">Reset</button>
                 </div>
 

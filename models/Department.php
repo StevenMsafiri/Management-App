@@ -46,8 +46,8 @@ class Department{
 
         $this->db->bind(':d_name', $data['name']);
         $this->db->bind(':d_description', $data['description']);
-        $this->db->bind('d_zone', $data['zone_code']);
-        $this->db->bind('d_head', $data['department_head']);
+        $this->db->bind('d_zone', $data['Zone']);
+        $this->db->bind('d_head', intval($data['Supervisor']));
 
         return $this->db->execute();
     }
@@ -56,14 +56,15 @@ class Department{
 
     public function updateById($id, $data){
 
-        $sql = "UPDATE Departments SET department_name = :d_name, description = :d_description, zone = :d_zone, :d_head WHERE dept_id = $id";
+        $sql = "UPDATE Departments SET department_name = :d_name, description = :d_description, zone = :d_zone, head_of_dept = :d_head WHERE dept_id = :id";
 
         $this->db->query($sql);
 
+        $this->db->bind(':id', intval($id));
         $this->db->bind(':d_name', $data['name']);
         $this->db->bind(':d_description', $data['description']);
-        $this->db->bind('d_zone', $data['zone_code']);
-        $this->db->bind('d_head', $data['department_head']);
+        $this->db->bind('d_zone', $data['Zone']);
+        $this->db->bind('d_head', intval($data['Supervisor']));
 
         return $this->db->execute();
 

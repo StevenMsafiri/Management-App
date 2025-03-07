@@ -14,7 +14,7 @@
     <?php
 
     include "./partials/nav.php";
-    include "../controllers/Employees.php";
+    include_once "../controllers/Employees.php";
     include "../controllers/Zones.php";
     include "../controllers/Departments.php";
 
@@ -22,31 +22,13 @@
     $zonesController = new Zones();
     $departsController = new Departments();
 
-
     $zones = $zonesController->getAllzones();
     $employees = $employeesController->read();
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        echo "here";
-        $result = $departsController->processForm($_POST);
-
-        var_dump($result);
-
-        if ($result) {
-            redirect("../views/departs.php");
-            exit();
-        } else {
-            flash("create", "Internal Error");
-            redirect("../views/departs-create.php");
-        }
-    }
-
-
     ?>
 
 
     <div class="container-reg">
-        <a href="./departs-read.php" class="go-back">X</a>
+        <a href="./departs.php" class="go-back">X</a>
         <form action="" method="post">
         <div class="title">Create New Departmet</div>
         <?php 

@@ -40,40 +40,77 @@ class Departments
     public function deleteDepartment($id)
     {
 
-        return $this->departmentModel->deleteById($id);
+        $result = $this->departmentModel->deleteById($id);
+
+        if($result){
+
+            header("Location: ../views/departs.php");
+            exit();
+
+        }
+        
     }
 
     public function createDepartment($data)
     {
-        return $this->departmentModel->createNew($data);
+        $result = $this->departmentModel->createNew($data);
+
+        if ($result) {
+            redirect("../views/departs.php");
+            exit();
+        } 
+        else {
+            flash("create", "Head of department exists");
+            redirect("../views/departs-create.php");
+        }
     }
 
 
     public function editDepartment($id, $data)
     {
 
-        return $this->departmentModel->updateById($id, $data);
-    }
-
-    public function processForm($postData, $isUpdate = false)
-    {
-        $data = [
-            'dept_id' => isset($postData['id']) ? trim($postData['id']) : null, // Ensure 'id' exists
-            'name' => trim($postData['name']),
-            'description' => trim($postData['description']),
-            'department_head' => trim($postData['Supervisor']),
-            'zone_code' => trim($postData['Zone'])
-        ];
-
-        if (empty($data['name']) || empty($data['description']) || empty($data['department_head']) || empty($data['zone_code'])) {
-
-            return false;
-        }
-
-        if ($isUpdate) {
-            return $this->editDepartment($data['dept_id'], $data);
-        } else {
-            return $this->createDepartment($data);
+        $result = $this->departmentModel->updateById($id, $data);
+        if ($result) {
+            header("Location: ../views/departs.php");
+            exit();
+        } 
+        else {
+            flash("update", "Entered H.O.D exists");
+            redirect("../views/departs-edit.php");
         }
     }
 }
+
+
+$method = new Departments; 
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if(isset($_POST['is_update']) && intval($_POST['is_update']) == 1){
+        
+        $id = $_POST['id'];
+        var_dump($_POST['id']);
+        return $method->editDepartment($id, $_POST);
+
+    }else{
+
+        return $method->createDepartment($_POST);
+
+    }
+}
+
+if($_SERVER['REQUEST_METHOD']==='GET' &&  !empty($_GET['dept_id'])){
+
+    // echo "<pre>";
+
+    // var_dump($_SERVER);
+
+    // echo "</pre>";
+    
+
+    $id = $_GET['dept_id'];
+    $method->deleteDepartment($id);
+}
+
+
+  

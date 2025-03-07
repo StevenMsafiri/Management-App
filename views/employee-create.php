@@ -14,35 +14,18 @@
     <?php
 
     include "./partials/nav.php";
-
     include_once '../controllers/Employees.php';
-
     include_once '../controllers/Positions.php';
-
     include_once '../controllers/Zones.php';
-
     include_once '../helpers/session_helper.php';
-
 
     $employeesController = new Employees();
     $positionsController = new Positions();
     $zonesController = new Zones();
 
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $result = $employeesController->processForm($_POST);
-        if ($result) {
-            header("Location: employees.php");
-            exit();
-        } else {
-            flash("create", "Internal Error");
-            redirect("../views/employee-create.php");
-        }
-    } else {
-        $employees = $employeesController->read();
-        $positions = $positionsController->getAllPositions();
-        $zones = $zonesController->getAllzones();
-    }
+    $employees = $employeesController->read();
+    $positions = $positionsController->getAllPositions();
+    $zones = $zonesController->getAllzones();
 
     ?>
 
