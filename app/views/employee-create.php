@@ -120,14 +120,14 @@
                         <label for="Position:"> Position:</label>
                         <?php
                         if (!empty($positions)) {
-                            echo '<select name="Position" id="pos">';
+                            echo '<select name="position" id="pos">';
                             echo '<option selected> Select a position </option>';
                             foreach ($positions as $pos) {
                                 echo '<option value="' . htmlspecialchars($pos['title']) . '">' . htmlspecialchars($pos['title']) . '</option>';
                             }
                             echo '</select>';
                         } else {
-                            echo '<input type="text" name="Position" placeholder="position" required>';
+                            echo '<input type="text" name="position" placeholder="position" required>';
                         }
                         ?>
                     </div>

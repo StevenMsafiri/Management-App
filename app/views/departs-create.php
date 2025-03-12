@@ -66,13 +66,13 @@
                         <?php
                         if (!empty($employees)) {
                             echo '<select name="Supervisor" id="pos">';
-                            echo '<option selected> Select Head of Department </option>';
+                            echo '<option selected> Select Head of department </option>';
                             foreach ($employees as $employee) {
                                 echo '<option value="' . htmlspecialchars($employee['employee_id']) . '">' .htmlspecialchars($employee['f_name'])." ". htmlspecialchars($employee['l_name']) . '</option>';
                             }
                             echo '</select>';
                         } else {
-                            echo '<input type="text" name="Zone" placeholder="Head of the Department" required>';
+                            echo '<input type="text" name="Zone" placeholder="Head of the department" required>';
                         }
                         ?>
                     </div>

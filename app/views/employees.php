@@ -1,41 +1,13 @@
-<?php
-
-use controllers\Departments;
-use controllers\Employees;
-use controllers\Zones;
-
-include '../helpers/functions.php';
-require_once '../controllers/Employees.php';
-require_once '../controllers/Zones.php';
-require_once '../controllers/Departments.php';
-
-$employeesController = new Employees();
-$departsController = new Departments;
-$zonesController = new Zones;
-
-$data = $employeesController->read();
-$zones = $zonesController->getAllzones();
-$departments =$departsController->getAllDepartments();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/read.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <title>Staffs</title>
+    <title><?= $data['page_title']?></title>
 </head>
 
 <body>
-    <?php
-
-    include "./partials/nav.php"
-
-    ?>
-
     <body>
         <div class="container-staff">
             <div class="one">
@@ -62,8 +34,8 @@ $departments =$departsController->getAllDepartments();
                 </thead>
                 <tbody>
                     <?php
-                    if (!empty($data)) {
-                        foreach ($data as $row) {
+                    if (!empty($data['employees'])) {
+                        foreach ($data['employees'] as $row) {
                             echo "
                             <tr class='horizontal'>
                             <td> $row[employee_id]</td>
@@ -73,23 +45,24 @@ $departments =$departsController->getAllDepartments();
                             <td> $row[birth_date]</td>
                             <td> $row[qualification]</td>
                             <td>";
-
-                            foreach($zones as $zone){
-                                if($row['zone_code'] === $zone['zone_code']){
-                                    echo $zone['zone_name'];
-                                    break;
-                                }
-                            }
-                            
-                            echo "</td>
-                            <td>";
-                            foreach($departments as $department){
-                                if($row['department_id'] === $department['dept_id']){
-                                    echo $department['department_name'];
-                                    break;
-                                }
-                            }
-                            echo "</td>
+//
+//                            foreach($zones as $zone){
+//                                if($row['zone_code'] === $zone['zone_code']){
+//                                    echo $zone['zone_name'];
+//                                    break;
+//                                }
+//                            }
+//
+//                            echo "</td>
+//                            <td>";
+//                            foreach($departments as $department){
+//                                if($row['department_id'] === $department['dept_id']){
+//                                    echo $department['department_name'];
+//                                    break;
+//                                }
+//                            }
+//                            echo "</td>
+                            echo "
                             <td> $row[section_id]</td>
                             <td> $row[position]</td>
                             <td> $row[reporting_to]</td>
