@@ -5,6 +5,7 @@ Class department
     public $connection;
     function __construct(){
         $this->connection = new Database();
+        $this->connection->db_connect();
     }
 
     function getAllDepartments()

@@ -26,7 +26,7 @@ Class Database
         }
 
         if ($check) {
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } else {
             return false;
         }
@@ -46,4 +46,5 @@ Class Database
 
         return $check ? true : false;
     }
+
 }

@@ -4,33 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/eforms.css">
-    <link rel="stylesheet" href="./css/header.css">
     <title>Upadate Department</title>
 </head>
 
 <body>
-
-    <?php
-
-    use controllers\Departments;
-    use controllers\Employees;
-    use controllers\Zones;
-
-    include "./partials/nav.php";
-    include "../controllers/Employees.php";
-    include "../controllers/Zones.php";
-    include "../controllers/Departments.php";
-
-    $employeesController = new Employees();
-    $zonesController = new Zones();
-    $departsController = new Departments();
-
-    $zones = $zonesController->getAllzones();
-    $employees = $employeesController->read();
-    $id = $_GET['id'];
-    $department = $departsController->getOneDepartment($id);
-    ?>
 
     <div class="container-reg">
         <a href="./departs.php" class="go-back">X</a>

@@ -4,42 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/eforms.css">
-    <title>Registration Form</title>
+    <title><?= $data['page_title']?></title>
 </head>
 
 <body>
-
-    <?php
-
-    use controllers\Employees;
-    use controllers\Positions;
-    use controllers\Zones;
-
-    include "./partials/nav.php";
-    include_once '../controllers/Employees.php';
-    include_once '../controllers/Positions.php';
-    include_once '../controllers/Zones.php';
-    include_once '../helpers/session_helper.php';
-
-    $employeesController = new Employees();
-    $positionsController = new Positions();
-    $zonesController = new Zones();
-
-    $employees = $employeesController->read();
-    $positions = $positionsController->getAllPositions();
-    $zones = $zonesController->getAllzones();
-
-    ?>
-
     <div class="container-reg">
-        <a href="./employees.php" class="go-back">X</a>
+        <a href="" class="go-back">X</a>
         <form method="POST">
             <input type="hidden" name="is_update" value="0">
             <div class="form-content">
                 <div class="title">Register Employee</div>
-                <?php flash("create") ?>
                 <div class=" two">
                     <div class="input-box">
                         <label for="Firstname:">First Name:</label>
@@ -85,10 +59,10 @@
                     <div class="input-box">
                         <label for="Zone">Zone:</label>
                         <?php
-                        if (!empty($zones)) {
+                        if (!empty($data['zones'])) {
                             echo '<select name="Zone" id="zone">';
                             echo '<option selected> Select a Zone </option>';
-                            foreach ($zones as $zone) {
+                            foreach ($data['zones'] as $zone) {
                                 echo '<option value="' . htmlspecialchars($zone['zone_code']) . '">' . htmlspecialchars($zone['zone_name']) . '</option>';
                             }
                             echo '</select>';
@@ -119,10 +93,10 @@
                     <div class="input-box">
                         <label for="Position:"> Position:</label>
                         <?php
-                        if (!empty($positions)) {
+                        if (!empty($data['positions'])) {
                             echo '<select name="position" id="pos">';
                             echo '<option selected> Select a position </option>';
-                            foreach ($positions as $pos) {
+                            foreach ($data['positions'] as $pos) {
                                 echo '<option value="' . htmlspecialchars($pos['title']) . '">' . htmlspecialchars($pos['title']) . '</option>';
                             }
                             echo '</select>';
@@ -136,10 +110,10 @@
                     <div class="input-box" id="super">
                         <label for="Supervisor:">Reporting to:</label>
                         <?php
-                        if (!empty($employees)) {
+                        if (!empty($data['employees'])) {
                             echo '<select name="Supervisor" id="pos">';
                             echo '<option selected> Select reporting to </option>';
-                            foreach ($employees as $employee) {
+                            foreach ($data['employees'] as $employee) {
                                 echo '<option value="' . htmlspecialchars($employee['employee_id']) . '">' . htmlspecialchars($employee['f_name'] . " " . $employee['l_name']) . '</option>';
                             }
                             echo '</select>';
@@ -174,7 +148,7 @@
         $('#zone').on('change', function() {
             var zone = $(this).val()
             if (zone) {
-                $.getJSON('../helpers/departs_helper.php', {
+                $.getJSON('', {
                     zone: zone
 
                 }, function(data) {
@@ -196,7 +170,7 @@
         $('#dept').on('change', function() {
             var department = $(this).val()
             if (department) {
-                $.getJSON('../helpers/sects_helper.php', {
+                $.getJSON('../app/controllers/employees/getJSON', {
                         department: department
                     },
                     function(data) {

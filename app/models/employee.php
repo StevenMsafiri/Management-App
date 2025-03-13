@@ -31,19 +31,19 @@ Class employee
 
     function getEmployee($employee_id)
     {
-        $sql = "SELECT * FROM Employees WHERE employee_id = ?";
+        $sql = "SELECT * FROM Employees WHERE employee_id = :employee_id limit 1";
 
+        $arr = ['employee_id' => $employee_id];
 
-        $result = $this->connection->read($sql, $employee_id);
+        $result = $this->connection->read($sql, $arr);
         return $result;
     }
 
     function  getAllEmployees()
     {
         $sql = "SELECT * FROM Employees";
-        echo  "here";
+
         $result = $this->connection->read($sql);
-        echo "there";
         return $result;
     }
     function getEmployeesByDepartment($department_id)
