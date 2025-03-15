@@ -1,6 +1,6 @@
 <?php
 
-Class Employees extends Controller
+class Employees extends Controller
 
 {
     public function index()
@@ -19,18 +19,15 @@ Class Employees extends Controller
         $sections = $this->loadModel('section');
         $data['sections'] = $sections->getAllSections();
 
-        if($_SERVER['REQUEST_METHOD'] == 'GET')
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $this->view("employees", $data);
         }
-        if($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id']))
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
             $employee_id = $_GET['id'];
             $employee = $this->loadModel('employee');
             $result = $employee->deleteEmployee($employee_id);
 
-            if($result)
-            {
+            if ($result) {
                 $this->view("employees", $data);
             }
         }
@@ -56,12 +53,10 @@ Class Employees extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $result = $employees->createEmployee($_POST);
-            if($result)
-            {
+            if ($result) {
                 $this->view("employee-create", $data);
             }
-        }else
-        {
+        } else {
             $this->view("employee-create", $data);
         }
 
@@ -83,20 +78,19 @@ Class Employees extends Controller
         $sections = $this->loadModel('section');
         $data['sections'] = $sections->getAllSections();
 
-        if($_SERVER['REQUEST_METHOD'] == 'GET')
-        {
+        $positions = $this->loadModel('position');
+        $data['positions'] = $positions->getAllPositions();
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $employee_id = intval($_GET['id']);
             $data['employee'] = $employees->getEmployee($employee_id);
 
-            show($data);
 
             $this->view("employee-edit", $data);
         }
-        if($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = $employees->updateEmployee($_POST);
-            if($result)
-            {
+            if ($result) {
                 $this->view("employees", $data);
             }
         }
