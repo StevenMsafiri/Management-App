@@ -7,26 +7,55 @@ Class employee
         $this->connection = new Database();
         $this->connection->db_connect();
     }
-    function addEmployee($POST)
+    function addEmployee($POST): void
     {
-        $sql = "INSERT INTO Employees (f_name, s_name,l_name, qualification, birth_date, zone_code, department_id, section_id, position, employed_date, reporting_to)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Employees (f_name, s_name,l_name, qualification, birth_date, zone_code, department_id, section_id, position, reporting_to, employed_date)
+                VALUES (:f_name, :s_name, :l_name, :qualification, :birth_date, :zone_code, :dept_id, :sect_id,:position ,:supervisor, :employed_date)";
 
-        $this->connection->write($sql, $_POST);
+        $arr = [':f_name' =>$POST['Firstname'],
+            ':s_name' =>$POST['Second-name'],
+            ':l_name' =>$POST['Lastname'],
+            ':qualification' =>$POST['Qualification'],
+            ':birth_date' =>$POST['Birthdate'],
+            ':zone_code' =>$POST['Zone'],
+            ':dept_id' =>$POST['Department'],
+            ':sect_id' =>$POST['Section'],
+            ':position' =>$POST['position'],
+            ':supervisor' =>$POST['Supervisor'],
+            ':employed_date' =>$POST['Employed-date']];
+
+        $this->connection->write($sql, $arr);
 
     }
 
     function deleteEmployee($employee_id)
     {
-        $sql = "DELETE FROM Employees WHERE id = ?";
-        $this->connection->write($sql, $employee_id);
+
+        $sql = "DELETE FROM Employees WHERE employee_id = :employee_id";
+        $arr = [':employee_id' => $employee_id];
+        $this->connection->write($sql, $arr);
     }
 
     function editEmployee($POST)
     {
-        $sql = "UPDATE Employees SET f_name = ?, s_name = ?, l_name = ?, qualification = ?, birth_date = ? zone_code = ?,
-                department_id = ?, section_id = ?, position = ?, employed_date = ?, reporting_to = ? WHERE employee_id = ?";
-        $this->connection->write($sql, $_POST);
+        $sql = "UPDATE Employees SET f_name = :f_name, s_name = :s_name, l_name = :l_name, qualification = :qualification, birth_date = :birth_date, zone_code = :zone_code,
+                department_id = :dept_id, section_id = :sect_id, position = :position, reporting_to = :supervisor, employed_date = :employed_date WHERE employee_id = :employee_id";
+
+        $arr = [
+            ':f_name' =>$POST['Firstname'],
+            ':s_name' =>$POST['Second-name'],
+            ':l_name' =>$POST['Lastname'],
+            ':qualification' =>$POST['Qualification'],
+            ':birth_date' =>$POST['Birthdate'],
+            ':zone_code' =>$POST['Zone'],
+            ':dept_id' =>$POST['Department'],
+            ':sect_id' =>$POST['Section'],
+            ':position' =>$POST['position'],
+            ':supervisor' =>$POST['Supervisor'],
+            ':employed_date' =>$POST['Employed-date'],
+            ':employee_id' => $POST['id']];
+
+        $this->connection->write($sql, $arr);
     }
 
     function getEmployee($employee_id)

@@ -4,190 +4,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $data['page_title']?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title><?= $data['page_title'] ?></title>
 </head>
 
-<body>
-    <div class="container-reg">
-        <a href="" class="go-back">X</a>
-        <form method="POST">
-            <input type="hidden" name="is_update" value="0">
-            <div class="form-content">
-                <div class="title">Register Employee</div>
-                <div class=" two">
-                    <div class="input-box">
-                        <label for="Firstname:">First Name:</label>
-                        <input type="text" name="Firstname" id="" placeholder="First name" required>
-                    </div>
-                    <div class="input-box">
-                        <label for="Second-name:">Second Name:</label>
-                        <input type="text" name="Second-name" id="" placeholder="Second name" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="Lastname:"> Last Name:</label>
-                        <input type="text" name="Lastname" id="" placeholder="Last name" required>
-                    </div>
-
-                </div>
-
-                <div class="two">
-
-                    <div class="input-box">
-                        <label for="Qualification:">Qualification:</label>
-                        <select type="text" name="Qualification" id="qualify">
-                            <option value="" selected>Select qualification</option>
-                            <option value="Certificate" class="value">Certificate</option>
-                            <option value="Diploma" class="value">Diploma</option>
-                            <option value="Bachelor" class="value">Bachelor</option>
-                            <option value="Masters" class="value">Masters</option>
-                            <option value="PhD" class="value">PhD</option>
-                            <option value="Other" class="value">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="Birthdate:">Birth Date:</label>
-                        <input type="date" name="Birthdate" id="" placeholder="birthdate" required>
-                    </div>
-
-                </div>
-
-
-
-                <div class="two">
-                    <div class="input-box">
-                        <label for="Zone">Zone:</label>
-                        <?php
-                        if (!empty($data['zones'])) {
-                            echo '<select name="Zone" id="zone">';
-                            echo '<option selected> Select a Zone </option>';
-                            foreach ($data['zones'] as $zone) {
-                                echo '<option value="' . htmlspecialchars($zone['zone_code']) . '">' . htmlspecialchars($zone['zone_name']) . '</option>';
-                            }
-                            echo '</select>';
-                        } else {
-                            echo '<input type="text" name="Zone" placeholder="Zone" required>';
-                        }
-                        ?>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="Department">Department:</label>
-                        <select name="Department" id="dept" required>
-                            <option value="">Select a Department</option>
-                        </select>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="Section">Section:</label>
-                        <select name="Section" id="section" required>
-                            <option value="">Select a section</option>
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="two">
-
-                    <div class="input-box">
-                        <label for="Position:"> Position:</label>
-                        <?php
-                        if (!empty($data['positions'])) {
-                            echo '<select name="position" id="pos">';
-                            echo '<option selected> Select a position </option>';
-                            foreach ($data['positions'] as $pos) {
-                                echo '<option value="' . htmlspecialchars($pos['title']) . '">' . htmlspecialchars($pos['title']) . '</option>';
-                            }
-                            echo '</select>';
-                        } else {
-                            echo '<input type="text" name="position" placeholder="position" required>';
-                        }
-                        ?>
-                    </div>
-
-
-                    <div class="input-box" id="super">
-                        <label for="Supervisor:">Reporting to:</label>
-                        <?php
-                        if (!empty($data['employees'])) {
-                            echo '<select name="Supervisor" id="pos">';
-                            echo '<option selected> Select reporting to </option>';
-                            foreach ($data['employees'] as $employee) {
-                                echo '<option value="' . htmlspecialchars($employee['employee_id']) . '">' . htmlspecialchars($employee['f_name'] . " " . $employee['l_name']) . '</option>';
-                            }
-                            echo '</select>';
-                        } else {
-                            echo '<input type="text" name="Zone" placeholder="position" required>';
-                        }
-                        ?>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="Employed-date:">Employed-date:</label>
-                        <input type="date" name="Employed-date" id="" required>
-                    </div>
-
-                </div>
-
-                <div class="form-actions">
-                    <button type="reset">Clear</button>
-                    <button type="submit" id="create-btn">Create</button>
-                </div>
+<body class="bg-gray-300">
+<div class="container-reg w-11/12 mx-auto mt-32 bg-white p-4 lg:w-7/12">
+    <button class="">X</button>
+    <form method="POST" action="" class="p-8">
+        <div class="title">CREATE EMPLOYEE
+            <br>
+        </div>
+        <div class="flex flex-row p-2 gap-4 items-center">
+            <div class="w-full flex flex-col gap-2">
+                <label for="Firstname:">First Name:</label>
+                <input class="bg-gray-200 py-2 indent-2" type="text" name="Firstname" id="" placeholder="First name">
             </div>
-        </form>
-    </div>
-</body>
+            <div class="w-full flex flex-col gap-2">
+                <label for="Second-name:">Second Name:</label>
+                <input class="bg-gray-200 py-2 indent-2" type="text" name="Second-name" id="" placeholder="Second name">
+            </div>
+            <div class="w-full flex flex-col gap-2">
+                <label for="Lastname:"> Last Name:</label>
+                <input class="bg-gray-200 py-2 indent-2" type="text" name="Lastname" id="" placeholder="Last name">
 
+            </div>
+        </div>
+
+        <div class="flex flex-row p-2 gap-4 items-center">
+            <div class="w-full flex flex-col gap-2">
+                <label for="Qualification:">Qualification:</label>
+                <select class="bg-gray-200 py-2 indent-2" name="Qualification" id="qualify">
+                    <option value="" selected>Select qualification</option>
+                    <option value="Certificate">
+                        Certificate
+                    </option>
+                    <option value="Diploma">
+                        Diploma
+                    </option>
+                    <option value="Bachelor">
+                        Bachelor
+                    </option>
+                    <option value="Masters">
+                        Masters
+                    </option>
+                    <option value="PhD">
+                        PhD
+                    </option>
+                    <option value=" Other">
+                        Other
+                    </option>
+                </select>
+            </div>
+            <div class="w-full flex flex-col gap-2">
+                <label for="Birthdate:">Birth Date:</label>
+                <input class="bg-gray-200 py-1 indent-2" type="date" name="Birthdate" id="" placeholder="birthdate">
+            </div>
+        </div>
+
+
+        <div class="flex flex-row p-2 gap-4">
+            <div class="w-full flex flex-col gap-2">
+                <label for="Zone">Zone:</label>
+                <select class="bg-gray-200 py-2 indent-2" name="Zone" id="zone" required>
+                    <option> Select Zone</option>
+                    <?php
+                        foreach ($data['zones'] as $zone) {
+                            echo '<option value="' . htmlspecialchars($zone['zone_code']). '">' . htmlspecialchars($zone['zone_name']) . '</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+
+
+            <div class="w-full flex flex-col gap-2">
+                <label for="Department">Department:</label>
+                <select class="bg-gray-200 py-2 indent-2" name="Department" id="dept" required>
+
+                    <option selected>Select a department</option>
+                        <?php
+                        foreach ($data['departments'] as $department) {
+                                echo '<option value ="' . $department['dept_id'] . '">' . $department['department_name'] . '</option>';
+                        }
+
+                        ?>
+                </select>
+            </div>
+
+            <div class="w-full flex flex-col gap-2">
+                <label for="Section">Section:</label>
+                <select class="bg-gray-200 py-2 indent-2" name="Section" id="section" required>
+                    <option selected>Select a section </option>
+                        <?php
+                        foreach ($data['sections'] as $section) {
+                                echo '<option value ="' . $section['sect_id'] . '">' . $section['section_name'] . '</option>';
+                        }
+
+                        ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="flex flex-row p-2 gap-4">
+
+            <div class="w-full flex flex-col gap-2">
+                <label for="Position:"> Position:</label>
+                <?php
+                if (!empty($data['positions'])) {
+                    echo '<select class="bg-gray-200 py-2 indent-2" name="position" id="pos">';
+                    echo '<option selected>Select a position</option>';
+                    foreach ($data['positions'] as $pos) {
+                        echo '<option value="' . htmlspecialchars($pos['title']) . '"';
+                        echo '>' . htmlspecialchars($pos['title']) . '</option>';
+                    }
+                    echo '</select>';
+                } else {
+                    echo '<input class="bg-gray-200 py-2 indent-2" type="text" name="position" placeholder="position" required>';
+                }
+                ?>
+            </div>
+            <div class="w-full flex flex-col gap-2" id="super">
+                <label for="Supervisor:">Reporting to:</label>
+                <?php
+                if (!empty($data['employees'])) {
+                    echo '<select class="bg-gray-200 py-2 indent-2" name="Supervisor" id="pos">';
+                    echo '<option>Select reporting to</option>';
+                    foreach ($data['employees'] as $employeeOption) {
+                        echo '<option value="' . htmlspecialchars($employeeOption['employee_id']) . '"';
+                        echo '>' . htmlspecialchars($employeeOption['f_name'] . " " . $employeeOption['l_name']) . '</option>';
+                    }
+                    echo '</select>';
+                } else {
+                    echo '<input type="text" name="Supervisor" placeholder="position" required>';
+                }
+                ?>
+            </div>
+            <div class="w-full flex flex-col gap-2">
+                <label for="Employed-date:">Employed-date:</label>
+                <input class="bg-gray-200 py-2 indent-2" type="date" name="Employed-date" id=""
+                       placeholder="employed-date">
+            </div>
+
+        </div>
+
+        <div class="form-actions" id="btn">
+            <button type="submit" id="create-btn" class="btn">Save</button>
+            <button type="reset">Cancel</button>
+        </div>
+
+</form>
+</div>
+</body>
 </html>
 
-<script src="./js/jquery-3.7.0.min.js"></script>
-
 <script>
-    $(document).ready(function() {
-        $('#zone').on('change', function() {
-            var zone = $(this).val()
-            if (zone) {
-                $.getJSON('', {
-                    zone: zone
 
-                }, function(data) {
-                    $('#dept').empty();
-                    $('#dept').append('<option value="">Select a Department</option>');
-
-                    $.each(data, function(key, value) {
-                        $('#dept').append('<option value="' + value['dept_id'] + '">' + value['department_name'] + '</option>');
-                    });
-                });
-            } else {
-                $('#dept').empty();
-                $('#dept').append('<input type="text" name="Department">');
-            }
-
-        });
-
-
-        $('#dept').on('change', function() {
-            var department = $(this).val()
-            if (department) {
-                $.getJSON('../app/controllers/employees/getJSON', {
-                        department: department
-                    },
-                    function(data) {
-
-
-                        $('#section').empty(); // Clear existing options
-                        $('#section').append('<option value="">Select a Section</option>');
-
-                        $.each(data, function(key, value) {
-
-                            $('#section').append('<option value="' + value['sect_id'] + '">' + value['section_name'] + '</option>');
-                        });
-                    })
-            } else {
-                $('#section').empty();
-                $('#section').append('<input type="text" name="Department">');
-            }
-        });
-    });
 </script>
+

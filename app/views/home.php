@@ -15,16 +15,20 @@
 
     <nav class="mr-8">
         <ul class="flex list-none gap-4 md:gap-12">
-            <li class="hover:text-white"><a href="#">HOME</a></li>
-            <li class="hover:text-white">STAFF</li>
+            <li class="hover:text-white"><a href="home">HOME</a></li>
+            <li class="hover:text-white"><a href="employees">STAFF</a></li>
             <li class="hover:text-white">REPORTS</li>
-            <li class="hover:text-white">SETTINGS</li>
+            <li class="hover:text-white">
+                <div>
+                    SETTINGS
+                </div>
+            </li>
             <li class="hover:text-white"><a href="logout">LOGOUT</a></li>
         </ul>
     </nav>
 </header>
 
-<p class="text-xl p-4"><?= "Welcome back," . $_SESSION['username']?></p>
+<p class="text-xl p-4"><?= "Welcome back, " . $_SESSION['username']?></p>
 
 <body>
 

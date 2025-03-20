@@ -22,11 +22,10 @@ class Employees extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $this->view("employees", $data);
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
-            $employee_id = $_GET['id'];
-            $employee = $this->loadModel('employee');
-            $result = $employee->deleteEmployee($employee_id);
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['employee_id'])) {
+            $employee_id = $_GET['employee_id'];
 
+            $result = $employees->deleteEmployee($employee_id);
             if ($result) {
                 $this->view("employees", $data);
             }
@@ -50,9 +49,11 @@ class Employees extends Controller
         $sections = $this->loadModel('section');
         $data['sections'] = $sections->getAllSections();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $positions = $this->loadModel('position');
+        $data['positions'] = $positions->getAllPositions();
 
-            $result = $employees->createEmployee($_POST);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $result = $employees->addEmployee($_POST);
             if ($result) {
                 $this->view("employee-create", $data);
             }
@@ -62,7 +63,7 @@ class Employees extends Controller
 
     }
 
-    function update()
+    function update(): void
     {
         $data['page_title'] = 'Update';
 
@@ -89,7 +90,8 @@ class Employees extends Controller
             $this->view("employee-edit", $data);
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $result = $employees->updateEmployee($_POST);
+            show($_POST);
+            $result = $employees->editEmployee($_POST);
             if ($result) {
                 $this->view("employees", $data);
             }

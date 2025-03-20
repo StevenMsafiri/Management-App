@@ -13,12 +13,14 @@ Class User{
             $arr['password'] = $POST['password'];
 
             $query = "SELECT * FROM logins WHERE username = :username AND password = :password ";
-            $data = $DB->read($query, $arr);
+            $logged_user = $DB->read($query, $arr);
 
-            if(is_array($data) && count($data) > 0){
+            if(is_array($logged_user) && count($logged_user) > 0){
                 //logged in
-                $_SESSION['username'] = $data[0]->username;
-                $_SESSION['id'] = $data[0]->id;
+                $_SESSION['username'] = $logged_user[0]['username'];
+                $_SESSION['id'] = $logged_user[0]['id'];
+
+                show($logged_user);
 
                 header("Location: " . ROOT . "home");
 
@@ -46,7 +48,7 @@ Class User{
             $query = "SELECT * FROM logins WHERE username = :user_url limit 1 ";
             $data = $DB->read($query, $arr);
             if(is_array($data)){
-                $_SESSION['id'] = $data[0]->id;
+                $_SESSION['id'] = $data[0]['id'];
 
                 return true;
             }

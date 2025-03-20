@@ -20,16 +20,17 @@ Class  App
 
            require "../app/controllers/" . $this->controller . ".php";
            $this->controller = new $this->controller;
+       }
 
-           if(isset($url[1]))
-           {
-               if(method_exists($this->controller, $url[1]))
+       if(isset($url[1]))
+       {
+           if(method_exists($this->controller, $url[1]))
                {
                    $this->method = $url[1];
                    unset($url[1]);
                }
-           }
        }
+
 //        show($url);
         $this->params = array_values($url);
        //        run the class and method

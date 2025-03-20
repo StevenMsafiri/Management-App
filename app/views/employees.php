@@ -7,15 +7,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title><?= $data['page_title']?></title>
 </head>
-    <body class="bg-gray-100 text-gray-900">
+    <body class="bg-gray-300 text-gray-900">
         <div class="w-11/12 mx-auto mt-20 bg-white p-8">
             <div class="flex justify-between items-baseline my-6">
             <h2 class="text-3xl text-gray-600 font-bold">LIST OF STAFFS</h2>
             <a class="bg-blue-300 p-2 mr-2" href="employees/create" id ="create-btn">Add Employee</a>
             </div>
            <div class="overflow-auto shadow">
-               <table class="w-full">
-                   <thead class="bg-blue-400 py-4">
+               <table class="w-full p-4 shadow-2xl">
+                   <thead class="py-4">
                    <tr>
                        <th class="text-left py-4">ID</th>
                        <th class="text-left py-4">First Name</th>
@@ -37,7 +37,7 @@
                    if (!empty($data['employees'])) {
                        foreach ($data['employees'] as $row) {
                            echo "
-                            <tr class='bg-cyan-200 my-2'>
+                            <tr class='my-2'>
                             <td class = 'py-2'> $row[employee_id]</td>
                             <td class = 'py-2'> $row[f_name]</td>
                             <td class = 'py-2'>$row[s_name]</td>
@@ -86,7 +86,7 @@
                             <a name='update-btn' href='employees/update?id=$row[employee_id]' class='update-btn'>
                             <img class='w-8' src='./assets/icons/icons8-update-64.png'>
                             </a>
-                                 <a  name='delete' href='employees?employee_id=$row[employee_id]' class='clear-btn'>
+                                 <a   href='employees?employee_id=$row[employee_id]' class='clear-btn'>
                                  <img class='w-8' src='./assets/icons/icons8-delete-48.png'>
                                  </a>
                             </div> 

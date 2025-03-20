@@ -4,44 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title><?= $data['title_name'] ?></title>
 </head>
 
-<body>
-<div class="container-reg">
-    <a href="home/employees" class="go-back">X</a>
-    <form method="POST" action="">
-        <div class="title">Update employee
+<body class="bg-gray-300">
+<div class="container-reg w-11/12 mx-auto mt-32 bg-white p-4 lg:w-7/12">
+        <button class="">X</button>
+        <form method="POST" action="" class="p-8">
+        <div class="title">UPDATE EMPLOYEE
             <br>
             <input type="hidden" name="id" value="<?php echo $data['employee'][0]['employee_id'] ?>">
         </div>
-
-        <input type="hidden" name="is_update" value="1">
-        <div class=" two">
-            <div class="input-box">
+        <div class="flex flex-row p-2 gap-4 items-center">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Firstname:">First Name:</label>
-                <input type="text" name="Firstname" id="" placeholder="First name"
+                <input class="bg-gray-200 py-2 indent-2" type="text" name="Firstname" id="" placeholder="First name"
                        value="<?php echo htmlspecialchars($data['employee'][0]['f_name']); ?>">
             </div>
-            <div class="input-box">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Second-name:">Second Name:</label>
-                <input type="text" name="Second-name" id="" placeholder="Second name"
+                <input class="bg-gray-200 py-2 indent-2" type="text" name="Second-name" id="" placeholder="Second name"
                        value="<?php echo htmlspecialchars($data['employee'][0]['s_name']); ?>">
             </div>
-
-            <div class="input-box">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Lastname:"> Last Name:</label>
-                <input type="text" name="Lastname" id="" placeholder="Last name"
+                <input class="bg-gray-200 py-2 indent-2" type="text" name="Lastname" id="" placeholder="Last name"
                        value="<?php echo htmlspecialchars($data['employee'][0]['l_name']); ?>">
-            </div>
 
+            </div>
         </div>
 
-        <div class="two">
-
-            <div class="input-box">
+        <div class="flex flex-row p-2 gap-4 items-center">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Qualification:">Qualification:</label>
-                <select name="Qualification" id="qualify">
+                <select class="bg-gray-200 py-2 indent-2" name="Qualification" id="qualify">
                     <option value="" selected>Select qualification</option>
                     <option value="Certificate"
                             class="value" <?php if ($data['employee'][0]['qualification'] == 'Certificate') echo 'selected'; ?>>
@@ -69,20 +66,18 @@
                     </option>
                 </select>
             </div>
-
-            <div class="input-box">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Birthdate:">Birth Date:</label>
-                <input type="date" name="Birthdate" id="" placeholder="birthdate"
+                <input class="bg-gray-200 py-1 indent-2" type="date" name="Birthdate" id="" placeholder="birthdate"
                        value="<?php echo htmlspecialchars($data['employee'][0]['birth_date']); ?>">
             </div>
-
         </div>
 
 
-        <div class="two">
-            <div class="input-box">
+        <div class="flex flex-row p-2 gap-4">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Zone">Zone:</label>
-                <select name="Zone" id="zone" required>
+                <select class="bg-gray-200 py-2 indent-2" name="Zone" id="zone" required>
                     <option> Select Zone</option>
                     <?php
                     if (!empty($data['zones'])) {
@@ -97,9 +92,9 @@
                     ?>
             </div>
 
-            <div class="input-box">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Department">Department:</label>
-                <select name="Department" id="dept" required>
+                <select class="bg-gray-200 py-2 indent-2" name="Department" id="dept" required>
                     <option value="<?php echo htmlspecialchars($data['employee'][0]['department_id']) ?> selected">
                         <?php
                         foreach ($data['departments'] as $department) {
@@ -113,9 +108,9 @@
                 </select>
             </div>
 
-            <div class="input-box">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Section">Section:</label>
-                <select name="Section" id="section" required>
+                <select class="bg-gray-200 py-2 indent-2" name="Section" id="section" required>
                     <option value="<?php echo htmlspecialchars($data['employee'][0]['section_id']); ?> selected">
                         <?php
                         foreach ($data['sections'] as $section) {
@@ -131,13 +126,13 @@
 
         </div>
 
-        <div class="two">
+        <div class="flex flex-row p-2 gap-4">
 
-            <div class="input-box">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Position:"> Position:</label>
                 <?php
                 if (!empty($data['positions'])) {
-                    echo '<select name="position" id="pos">';
+                    echo '<select class="bg-gray-200 py-2 indent-2" name="position" id="pos">';
                     echo '<option selected>Select a position</option>';
                     foreach ($data['positions'] as $pos) {
                         echo '<option value="' . htmlspecialchars($pos['title']) . '"';
@@ -146,17 +141,15 @@
                     }
                     echo '</select>';
                 } else {
-                    echo '<input type="text" name="position" placeholder="position" required>';
+                    echo '<input class="bg-gray-200 py-2 indent-2" type="text" name="position" placeholder="position" required>';
                 }
                 ?>
             </div>
-
-
-            <div class="input-box" id="super">
+            <div class="w-full flex flex-col gap-2" id="super">
                 <label for="Supervisor:">Reporting to:</label>
                 <?php
                 if (!empty($data['employees'])) {
-                    echo '<select name="Supervisor" id="pos">';
+                    echo '<select class="bg-gray-200 py-2 indent-2" name="Supervisor" id="pos">';
                     echo '<option>Select reporting to</option>';
                     foreach ($data['employees'] as $employeeOption) {
                         echo '<option value="' . htmlspecialchars($employeeOption['employee_id']) . '"';
@@ -169,10 +162,9 @@
                 }
                 ?>
             </div>
-
-            <div class="input-box">
+            <div class="w-full flex flex-col gap-2">
                 <label for="Employed-date:">Employed-date:</label>
-                <input type="date" name="Employed-date" id="" placeholder="employed-date"
+                <input class="bg-gray-200 py-2 indent-2" type="date" name="Employed-date" id="" placeholder="employed-date"
                        value="<?php echo htmlspecialchars($data['employee'][0]['employed_date']); ?>">
             </div>
 
@@ -182,65 +174,7 @@
             <button type="submit" id="create-btn" class="btn">Save</button>
             <button type="reset">Cancel</button>
         </div>
-
-</div>
-
-
 </form>
 </div>
 </body>
-
 </html>
-<script src="./js/jquery-3.7.0.min.js"></script>
-
-<script>
-    //    $(document).ready(function() {
-    //        $('#zone').on('change', function() {
-    //            var zone = $(this).val()
-    //            if (zone) {
-    //
-    //                $.getJSON('../helpers/departs_helper.php', {
-    //                    zone: zone
-    //
-    //                }, function(data) {
-    //                    $('#dept').empty(); // Clear existing options
-    //                    $('#dept').append('<option value="">Select a Department</option>'); // Default option
-    //
-    //
-    //                    $.each(data, function(key, value) {
-    //                        $('#dept').append('<option value="' + value['dept_id'] + '">' + value['department_name'] + '</option>');
-    //                    });
-    //                });
-    //            } else {
-    //                $('#dept').empty();
-    //                $('#dept').append('<input type="text" name="Department">');
-    //            }
-    //
-    //
-    //        });
-    //
-    //
-    //        $('#dept').on('change', function() {
-    //            var department = $(this).val()
-    //            if (department) {
-    //                $.getJSON('../helpers/sects_helper.php', {
-    //                        department: department
-    //                    },
-    //                    function(data) {
-    //
-    //
-    //                        $('#section').empty(); // Clear existing options
-    //                        $('#section').append('<option value="">Select a Section</option>');
-    //
-    //                        $.each(data, function(key, value) {
-    //
-    //                            $('#section').append('<option value="' + value['sect_id'] + '">' + value['section_name'] + '</option>');
-    //                        });
-    //                    })
-    //            } else {
-    //                $('#section').empty();
-    //                $('#section').append('<input type="text" name="Department">');
-    //            }
-    //        });
-    //    });
-    //</script>
