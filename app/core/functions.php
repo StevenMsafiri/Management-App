@@ -3,7 +3,7 @@
 function  show($stuff)
 {
     echo "<pre>";
-    print_r($stuff);
+    var_dump($stuff);
     echo "</pre>";
 }
 

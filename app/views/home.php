@@ -1,36 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title><?= $data['page_title']?></title>
-</head>
+<?php
 
-<header class="mt-4 bg-blue-300 flex py-8 justify-between items-baseline">
-    <div class="ml-8  text-xl font-bold">
-        SERVPORTAL
+include "../app/views/head.php";
+include "../app/views/navbar.php";
+
+?>
+
+<div class="container mx-auto px-4 py-8">
+    <p class="text-2xl font-semibold mb-4">Welcome back, <?= htmlspecialchars($_SESSION['username']) ?></p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white rounded-lg shadow p-4">
+            <h2 class="text-lg font-semibold mb-2">Total Employees</h2>
+            <p class="text-3xl font-bold"><?= htmlspecialchars(count($data['employees'])) ?></p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <h2 class="text-lg font-semibold mb-2">Recent Reports</h2>
+            <!--            <p class="text-3xl font-bold">--><?php //= htmlspecialchars($data['recent_reports']) ?><!--</p>-->
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <h2 class="text-lg font-semibold mb-2">System Status</h2>
+            <p class="text-3xl font-bold text-green-500">Online</p>
+        </div>
     </div>
 
-    <nav class="mr-8">
-        <ul class="flex list-none gap-4 md:gap-12">
-            <li class="hover:text-white"><a href="home">HOME</a></li>
-            <li class="hover:text-white"><a href="employees">STAFF</a></li>
-            <li class="hover:text-white">REPORTS</li>
-            <li class="hover:text-white">
-                <div>
-                    SETTINGS
-                </div>
-            </li>
-            <li class="hover:text-white"><a href="logout">LOGOUT</a></li>
-        </ul>
-    </nav>
-</header>
-
-<p class="text-xl p-4"><?= "Welcome back, " . $_SESSION['username']?></p>
+</div>
 
 <body>
-
+<main>
+</main>
 </body>
+
 </html>

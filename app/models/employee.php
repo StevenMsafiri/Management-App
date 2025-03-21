@@ -7,7 +7,7 @@ Class employee
         $this->connection = new Database();
         $this->connection->db_connect();
     }
-    function addEmployee($POST): void
+    function addEmployee($POST)
     {
         $sql = "INSERT INTO Employees (f_name, s_name,l_name, qualification, birth_date, zone_code, department_id, section_id, position, reporting_to, employed_date)
                 VALUES (:f_name, :s_name, :l_name, :qualification, :birth_date, :zone_code, :dept_id, :sect_id,:position ,:supervisor, :employed_date)";
@@ -24,8 +24,7 @@ Class employee
             ':supervisor' =>$POST['Supervisor'],
             ':employed_date' =>$POST['Employed-date']];
 
-        $this->connection->write($sql, $arr);
-
+        return $this->connection->write($sql, $arr);
     }
 
     function deleteEmployee($employee_id)
@@ -33,7 +32,7 @@ Class employee
 
         $sql = "DELETE FROM Employees WHERE employee_id = :employee_id";
         $arr = [':employee_id' => $employee_id];
-        $this->connection->write($sql, $arr);
+        return $this->connection->write($sql, $arr);
     }
 
     function editEmployee($POST)
@@ -55,7 +54,7 @@ Class employee
             ':employed_date' =>$POST['Employed-date'],
             ':employee_id' => $POST['id']];
 
-        $this->connection->write($sql, $arr);
+        return $this->connection->write($sql, $arr);
     }
 
     function getEmployee($employee_id)

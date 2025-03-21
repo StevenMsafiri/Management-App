@@ -10,29 +10,8 @@
 </head>
 
 <body>
-
-    <?php
-
-    use controllers\Departments;
-    use controllers\Employees;
-    use controllers\Zones;
-
-    include "./partials/nav.php";
-    include_once "../controllers/Employees.php";
-    include "../controllers/Zones.php";
-    include "../controllers/Departments.php";
-
-    $employeesController = new Employees();
-    $zonesController = new Zones();
-    $departsController = new Departments();
-
-    $zones = $zonesController->getAllzones();
-    $employees = $employeesController->read();
-    ?>
-
-
     <div class="container-reg">
-        <a href="./departs.php" class="go-back">X</a>
+        <a href="departments.php" class="go-back">X</a>
         <form action="" method="post">
         <div class="title">Create New Departmet</div>
         <?php 

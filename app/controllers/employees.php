@@ -22,17 +22,9 @@ class Employees extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $this->view("employees", $data);
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['employee_id'])) {
-            $employee_id = $_GET['employee_id'];
-
-            $result = $employees->deleteEmployee($employee_id);
-            if ($result) {
-                $this->view("employees", $data);
-            }
-        }
     }
 
-    public function create()
+    public function create():void
     {
         $data['page_title'] = 'Register';
 
@@ -52,12 +44,15 @@ class Employees extends Controller
         $positions = $this->loadModel('position');
         $data['positions'] = $positions->getAllPositions();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $employees->addEmployee($_POST);
             if ($result) {
-                $this->view("employee-create", $data);
-            }
-        } else {
+                header('Location:' .ROOT.'/employees');
+                exit();
+        }
+
+        }else
+        {
             $this->view("employee-create", $data);
         }
 
@@ -82,21 +77,35 @@ class Employees extends Controller
         $positions = $this->loadModel('position');
         $data['positions'] = $positions->getAllPositions();
 
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $employee_id = intval($_GET['id']);
             $data['employee'] = $employees->getEmployee($employee_id);
 
 
             $this->view("employee-edit", $data);
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            show($_POST);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $employees->editEmployee($_POST);
             if ($result) {
-                $this->view("employees", $data);
+                header('Location:' .ROOT.'/employees');
+                exit();
             }
         }
 
+    }
+
+    function delete()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['employee_id'])) {
+            $employee_id = $_GET['employee_id'];
+
+            $employees = $this->loadModel('employee');
+            $result = $employees->deleteEmployee($employee_id);
+            if ($result) {
+                header('Location:' .ROOT.'/employees');
+                exit();
+            }
+        }
     }
 
 }

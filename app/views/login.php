@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,33 +8,33 @@
     <title><?= $data['page_title']?></title>
 </head>
 
-<body class="bg-gray-200 w-full h-screen flex flex-col items-center justify-center">
+<body class="bg-gray-100 h-screen flex items-center justify-center">
 
-    <div class="bg-white w-full p-8">
-        <div class="w-7/12 mx-auto">
-            <div class="">
-                <div class="title">
-                    <h2 id="title">PLEASE LOG ON</h2>
-                </div>
-            </div>
-
-            <form class="" method="POST">
-                <div class="flex gap-8 my-4 items-center">
-                    <label for="username">Username</label>
-                    <input class = "w-full py-2" type="text" name="username">
-                </div>
-                <div class="flex gap-8 my-4 items-center">
-                    <label for="password">Password</label>
-                    <input class ="w-full py-2 " type="password" name="password">
-                </div>
-
-                <div class="flex justify-end">
-                    <button class="bg-blue-400 py-2 w-full" type="submit" name="submit" id="login-btn">Log on</button>
-                </div>
-
-            </form>
-        </div>
+<div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <div class="mb-6 text-center">
+        <h2 class="text-2xl font-semibold text-gray-800">PLEASE LOG ON</h2>
     </div>
+
+    <form method="POST" class="space-y-4">
+        <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+            <div class="mt-1">
+                <input type="text" name="username" id="username" class="w-full bg-gray-100 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-2 px-3">
+            </div>
+        </div>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <div class="mt-1">
+                <input type="password" name="password" id="password" class="w-full bg-gray-100 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 py-2 px-3">
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" name="submit" id="login-btn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Log on</button>
+        </div>
+    </form>
+</div>
+
 </body>
 
 </html>

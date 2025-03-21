@@ -8,6 +8,10 @@ Class Home extends Controller
 
         $data['page_title'] = "Home";
 
+        $employees = $this->loadModel('employee');
+
+        $data['employees'] = $employees->getAllEmployees();
+
         $this->view("home", $data);
 
     }

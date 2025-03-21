@@ -10,7 +10,7 @@
 <body>
 
     <div class="container-reg">
-        <a href="./departs.php" class="go-back">X</a>
+        <a href="departments.php" class="go-back">X</a>
         <form method = "POST" action="../controllers/Departments.php">
             <div class="title">Update departmet</div>
             <br>
