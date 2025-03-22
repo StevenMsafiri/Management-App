@@ -11,20 +11,21 @@ Class Section extends Database
 
     }
 
-    function getSection($department_id){
-        $sql = "SELECT * FROM Sections WHERE department_id = :department_id";
+    function getSection($section_id){
+        $sql = "SELECT * FROM Sections WHERE sect_id = :sect_id";
 
-        return $this->read($sql,array('department_id'=>$department_id));
+        return $this->read($sql,array('sect_id'=>$section_id));
     }
 
     function addSection($section)
     {
-        $sql = "INSERT INTO Sections (section_name, description,  department_id, section_head) VALUES (:section_name, :desciption, :department_id, :section_head)";
+        show($section);
+        $sql = "INSERT INTO Sections (section_name, description,  department_id, section_head) VALUES (:section_name, :description, :department_id, :section_head)";
 
-        $arr = array(':section_name' => $section['section_name'],
+        $arr = array(':section_name' => $section['name'],
             ':description' => $section['description'],
-            ':department_id' => $section['department_id'],
-        ':section_head' => $section['section_head']);
+            ':department_id' => $section['department'],
+        ':section_head' => $section['supervisor']);
 
         return $this->write($sql,$arr);
     }
@@ -33,11 +34,13 @@ Class Section extends Database
     {
         $sql ="UPDATE Sections SET section_name = :section_name, description = :description, department_id = :department_id, section_head = :section_head WHERE sect_id = :id";
 
-        $arr = array(':section_name' => $section['section_name'],
+        $arr = array(':section_name' => $section['name'],
             ':description' => $section['description'],
-            ':department_id' => $section['department_id'],
-            ':section_head' => $section['section_head'],
+            ':department_id' => $section['department'],
+            ':section_head' => $section['supervisor'],
             ':id' => $section['sect_id']);
+
+        return $this->write($sql, $arr);
     }
 
     function deleteSection($section_id)

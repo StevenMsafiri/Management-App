@@ -7,8 +7,8 @@ include "../app/views/navbar.php";
 
 <div class="container mx-auto bg-white rounded-lg shadow p-6 mt-10">
     <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-semibold">ZONES</h2>
-        <a href="<?= ROOT . 'section-create' ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Department</a>
+        <h2 class="text-2xl font-semibold">LIST OF ZONES</h2>
+        <a href="<?= ROOT . 'section-create' ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Zone</a>
     </div>
     <table class="min-w-full leading-normal">
         <thead>

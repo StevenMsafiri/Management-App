@@ -1,6 +1,6 @@
 <?php
 
-Class department
+Class Department
 {
     public $connection;
     function __construct(){
@@ -29,22 +29,22 @@ Class department
         $arr = [
             ':name' => $POST['name'],
             ':description' => $POST['description'],
-            ':zone' => $POST['zone'],
-            ':head_of_dept' => $POST['head_of_dept']
+            ':zone' => $POST['Zone'],
+            ':head_of_dept' => $POST['Supervisor']
         ];
 
-        $this->connection->write($sql, $arr);
+        return $this->connection->write($sql, $arr);
     }
 
     function editDepartment($POST)
     {
-        $sql = "UPDATE Departments SET department_name = :name, description = :description, zone = :zone, head_of_dept = :head_of_dept WHERE department_id = :id";
+        $sql = "UPDATE Departments SET department_name = :name, description = :description, zone = :zone, head_of_dept = :head_of_dept WHERE dept_id = :id";
 
         $arr = [
             ':name' => $POST['name'],
             ':description' => $POST['description'],
-            ':zone' => $POST['zone'],
-            ':head_of_dept' => $POST['head_of_dept'],
+            ':zone' => $POST['Zone'],
+            ':head_of_dept' => $POST['Supervisor'],
             ':id' => $POST['id']
         ];
         return $this->connection->write($sql, $arr);
@@ -52,7 +52,7 @@ Class department
     }
     function deleteDepartment($department_id)
     {
-        $sql = "DELETE FROM Departments WHERE department_id = :id";
+        $sql = "DELETE FROM Departments WHERE dept_id = :id";
         return $this->connection->write($sql, array(':id' => $department_id));
     }
 

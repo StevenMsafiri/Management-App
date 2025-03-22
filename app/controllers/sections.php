@@ -5,6 +5,8 @@ Class Sections extends Controller
 
     function index()
     {
+
+        $data['page_title'] = "Sections";
         $sections = $this->loadModel('section');
         $data['sections'] = $sections->getAllSections();
 
@@ -19,16 +21,17 @@ Class Sections extends Controller
 
     function create()
     {
+        $data['page_title'] = "Sections";
         $department = $this->loadModel('department');
         $data['departments'] = $department->getAllDepartments();
 
         $employees = $this->loadModel('employee');
         $data['employees'] = $employees->getAllEmployees();
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $section = $this->loadModel('section');
-            $result = $section->createSection($_POST);
+            $result = $section->addSection($_POST);
             if($result)
             {
                 header('Location:' .ROOT. '/sections');
@@ -41,6 +44,7 @@ Class Sections extends Controller
 
     function update()
     {
+        $data['page_title'] = "Sections";
         $department = $this->loadModel('department');
         $data['departments'] = $department->getAllDepartments();
 
@@ -48,13 +52,14 @@ Class Sections extends Controller
         $data['employees'] = $employees->getAllEmployees();
 
         $sections = $this->loadModel('section');
+
         $data['section'] =$sections->getSection($_GET['id']);
 
 
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']))
         {
 
-            $result = $sections->updateSection($_POST);
+            $result = $sections->editSection($_POST);
             if($result)
             {
                 header('Location:' .ROOT. '/sections');

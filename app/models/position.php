@@ -1,6 +1,6 @@
 <?php
 
-Class position
+Class Position
 {
     protected $connection;
     function __construct()

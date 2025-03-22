@@ -1,5 +1,5 @@
 <?php
-Class employee
+Class Employee
 {
     private $connection;
     function  __construct()

@@ -20,7 +20,7 @@ Class Departments extends Controller
 
     function create()
     {
-        $data['page_title'] = "Add Department";
+        $data['page_title'] = "Create Department";
 
         $employees = $this->loadModel('employee');
         $data['employees'] = $employees->getAllEmployees();
@@ -30,10 +30,11 @@ Class Departments extends Controller
 
         $this->view("departs-create", $data);
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']))
+        if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $department = $this->loadModel('department');
-            $result = $department->createDepartment($_POST);
+            $result = $department->addDepartment($_POST);
+            show($_POST);
             if ($result) {
                 header('Location:' .ROOT.'/departments');
                 exit();
@@ -52,15 +53,14 @@ Class Departments extends Controller
         $zones = $this->loadModel('zone');
         $data['zones'] = $zones->getAllZones();
 
-        $department = $this->loadModel('department');
-        $data['department'] = $department->getDepartment(intval($_GET['id']));
+        $departments = $this->loadModel('department');
+        $data['department'] = $departments->getDepartment(intval($_GET['id']));
 
         $this->view("departs-edit", $data);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']))
         {
-            $department = $this->loadModel('department');
-            $result = $department->updateDepartment($_POST);
+            $result = $departments->editDepartment($_POST);
             if ($result) {
                 header('Location:' .ROOT.'/departments');
                 exit();
@@ -72,9 +72,9 @@ Class Departments extends Controller
     {
         if($_SERVER['REQUEST_METHOD']==="GET" && isset($_GET['id']))
         {
-            $department = $this->loadModel('department');
+            $departments = $this->loadModel('department');
 
-            $result = $department->deleteDepartment($_GET['id']);
+            $result = $departments->deleteDepartment($_GET['id']);
             if ($result) {
                 header('Location:' .ROOT.'/departments');
                 exit();
