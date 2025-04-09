@@ -3,9 +3,9 @@
 define("WEBSITE_NAME", "My Website");
 
 define("DB_TYPE", "mysql");
-define('DB_NAME','staff_management');
-define("DB_USER", "root");
-define("DB_PASSWORD", "");
+define('DB_NAME','managementDB');
+define("DB_USER", "msafiri");
+define("DB_PASSWORD", "miyeye22");
 define("DB_HOST", "localhost");
 
 
