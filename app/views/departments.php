@@ -63,5 +63,13 @@ include "../app/views/navbar.php";
         </tbody>
     </table>
 </div>
+<div>
+    <ul>
+        <li>
+            <a class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-md transition duration-300"
+               href='exports/excel?export=department'>Export as excel</a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

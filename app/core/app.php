@@ -10,32 +10,40 @@ Class  App
 
     public function __construct()
     {
-       $url =$this->splitURL();
-//       show($url);
+        $url = $this->splitURL();
 
-       if(file_exists("../app/controllers/" . strtolower($url[0]) . ".php"))
-       {
-           $this->controller = strtolower($url[0]);
-           unset($url[0]);
+        // Default controller and method if nothing is found
+        $defaultController = 'home';
+        $defaultMethod = 'index';
 
-           require "../app/controllers/" . $this->controller . ".php";
-           $this->controller = new $this->controller;
-       }
+        // Check if requested controller file exists
+        if (isset($url[0]) && file_exists("../app/controllers/" . strtolower($url[0]) . ".php")) {
+            $this->controller = strtolower($url[0]);
+            unset($url[0]);
 
-       if(isset($url[1]))
-       {
-           if(method_exists($this->controller, $url[1]))
-               {
-                   $this->method = $url[1];
-                   unset($url[1]);
-               }
-       }
+            require "../app/controllers/" . $this->controller . ".php";
+            $this->controller = new $this->controller;
+        } else {
+            // Controller doesn't exist — redirect to default
+            header("Location: " . ROOT . "/$defaultController/$defaultMethod");
+            exit;
+        }
 
-//        show($url);
+        // Check if method exists in controller
+        if (isset($url[1])) {
+            if (method_exists($this->controller, $url[1])) {
+                $this->method = $url[1];
+                unset($url[1]);
+            }
+        }
+
+        // You can also store remaining $url elements as parameters if needed
         $this->params = array_values($url);
-       //        run the class and method
-       call_user_func_array([$this->controller, $this->method],$this->params);
+
+        // Finally, call the method
+        call_user_func_array([$this->controller, $this->method], $this->params);
     }
+
 
     private function splitURL()
     {
