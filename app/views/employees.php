@@ -12,7 +12,7 @@ include "../app/views/navbar.php";
            href="employees/create" id="create-btn">Add Employee</a>
     </div>
     <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200">
+        <table class="min-w-full divide-y divide-gray-200" id="table">
             <thead class="bg-gray-50">
             <tr>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -105,16 +105,8 @@ include "../app/views/navbar.php";
             </tbody>
         </table>
     </div>
+<?php
 
-    <div>
-        <ul>
-            <li>
-                <a class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-md transition duration-300"
-                   href='exports/excel?export=employee'>Export as excel</a>
-            </li>
-        </ul>
-    </div>
-</div>
-</body>
+include "../app/views/footer.php";
 
-</html>
+?>

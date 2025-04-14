@@ -10,7 +10,7 @@ include "../app/views/navbar.php";
         <h2 class="text-2xl font-semibold">DEPARTMENTS</h2>
         <a href="departments/create" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Department</a>
     </div>
-    <table class="min-w-full leading-normal">
+    <table class="min-w-full leading-normal" id="table">
         <thead>
         <tr>
             <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -63,13 +63,8 @@ include "../app/views/navbar.php";
         </tbody>
     </table>
 </div>
-<div>
-    <ul>
-        <li>
-            <a class="bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-md transition duration-300"
-               href='exports/excel?export=department'>Export as excel</a>
-        </li>
-    </ul>
-</div>
-</body>
-</html>
+<?php
+
+include "../app/views/footer.php";
+
+?>
